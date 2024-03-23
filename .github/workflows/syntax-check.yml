@@ -1,0 +1,17 @@
+name: Python code syntax check
+
+on:
+  push:
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Python code syntax check
+        run: |
+          shopt -s globstar
+          python -m py_compile ./**/*.py
