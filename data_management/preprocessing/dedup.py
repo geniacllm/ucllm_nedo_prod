@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 
 
-def exec_hojichar_deduplication(lines: list[str], output_base: str, stats: list[dict]):
+def exec_hojichar/ng/_deduplication(lines: list[str], output_base: str, stats: list[dict]):
     remained_lines = []
     cleaner = Compose([
         document_filters.JSONLoader(ignore=True),
