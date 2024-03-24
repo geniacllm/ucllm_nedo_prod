@@ -28,5 +28,11 @@
 			"unigram",
 			"venv"
 		]
+	},
+	"extensions": {
+		"recommendations": [
+			"charliermarsh.ruff",
+			"timonwong.shellcheck"
+		]
 	}
 }
