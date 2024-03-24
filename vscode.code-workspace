@@ -1,55 +1,59 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"cSpell.words": [
-			"ABCI",
-			"allgather",
-			"arxiv",
-			"botchan",
-			"cpython",
-			"CUDA",
-			"culturax",
-			"direnv",
-			"EVOFORMER",
-			"filebase",
-			"finetune",
-			"finetuned",
-			"flashattn",
-			"Geniac",
-			"GROUPNAME",
-			"hpcx",
-			"huggingface",
-			"JOBNAME",
-			"leaderboard",
-			"LIBEXT",
-			"miniconda",
-			"nedo",
-			"Nejumi",
-			"netrc",
-			"nvcc",
-			"openassistant",
-			"pretrain",
-			"protoc",
-			"qrsh",
-			"sakura",
-			"sentencepiece",
-			"srun",
-			"torchaudio",
-			"torchvision",
-			"ucllm",
-			"unigram",
-			"venv",
-			"wandb"
-		]
-	},
-	"extensions": {
-		"recommendations": [
-			"charliermarsh.ruff",
-			"timonwong.shellcheck"
-		]
-	}
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.mypy_cache": true,
+      "**/.ruff_cache": true
+    },
+    "cSpell.words": [
+      "mypy",
+      "ABCI",
+      "allgather",
+      "arxiv",
+      "botchan",
+      "charliermarsh",
+      "cpython",
+      "CUDA",
+      "culturax",
+      "direnv",
+      "EVOFORMER",
+      "filebase",
+      "finetune",
+      "finetuned",
+      "flashattn",
+      "Geniac",
+      "GROUPNAME",
+      "hpcx",
+      "huggingface",
+      "JOBNAME",
+      "leaderboard",
+      "LIBEXT",
+      "miniconda",
+      "nedo",
+      "Nejumi",
+      "netrc",
+      "nvcc",
+      "openassistant",
+      "pretrain",
+      "protoc",
+      "qrsh",
+      "sakura",
+      "sentencepiece",
+      "srun",
+      "timonwong",
+      "torchaudio",
+      "torchvision",
+      "ucllm",
+      "unigram",
+      "venv",
+      "wandb"
+    ]
+  },
+  "extensions": {
+    "recommendations": ["charliermarsh.ruff", "timonwong.shellcheck"]
+  }
 }
