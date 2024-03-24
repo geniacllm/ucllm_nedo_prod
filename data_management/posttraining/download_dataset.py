@@ -16,7 +16,10 @@ def __execute_download(download_file: str, output_path: str, dataset_root: str) 
     os.chdir(current_dir)
 
     logging.info(f"Copying {download_file} to {output_path}")
-    shutil.copy(os.path.join(dataset_root, download_file), os.path.join(output_path, download_file))
+    shutil.copy(
+        os.path.join(dataset_root, download_file),
+        os.path.join(output_path, download_file),
+    )
 
 
 def download_dataset(output_base: str = "output") -> None:
@@ -31,14 +34,13 @@ def download_dataset(output_base: str = "output") -> None:
         # Change directory in order to use git lfs
 
         os.chdir(dataset_root)
-        subprocess.call(
-            [f"GIT_LFS_SKIP_SMUDGE=1 git pull {dataset}"], shell=True)
+        subprocess.call([f"GIT_LFS_SKIP_SMUDGE=1 git pull {dataset}"], shell=True)
     else:
         subprocess.call(
-            [f"GIT_LFS_SKIP_SMUDGE=1 git clone {dataset} {dataset_root}"], shell=True)
+            [f"GIT_LFS_SKIP_SMUDGE=1 git clone {dataset} {dataset_root}"], shell=True
+        )
         os.chdir(dataset_root)
-        subprocess.call(
-            [f"git lfs install"], shell=True)
+        subprocess.call([f"git lfs install"], shell=True)
     os.chdir(current_dir)
 
     output_path = os.path.join(output_base, "datasets/databricks-dolly-15k-ja")
@@ -47,14 +49,19 @@ def download_dataset(output_base: str = "output") -> None:
     os.makedirs(output_path, exist_ok=True)
 
     filename = "databricks_dolly_15k_ja_for_dolly_training.jsonl"
-    __execute_download(download_file=filename,
-                       output_path=output_path, dataset_root=dataset_root)
+    __execute_download(
+        download_file=filename, output_path=output_path, dataset_root=dataset_root
+    )
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Download dataset")
-    parser.add_argument("--output_base", type=str, default="output",
-                        help="Base directory to save the dataset")
+    parser.add_argument(
+        "--output_base",
+        type=str,
+        default="output",
+        help="Base directory to save the dataset",
+    )
 
     return parser.parse_args()
 
