@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-nodes=$(scontrol show hostnames $SLURM_JOB_NODELIST)
+nodes=$(scontrol show hostnames "$SLURM_JOB_NODELIST")
 
 
 ssh_config_file="${HOME}/.ssh/config"
@@ -19,4 +19,4 @@ for node in $nodes; do
 done
 
 echo "SSH configuration has been updated."
-cat ${ssh_config_file}
+cat "${ssh_config_file}"

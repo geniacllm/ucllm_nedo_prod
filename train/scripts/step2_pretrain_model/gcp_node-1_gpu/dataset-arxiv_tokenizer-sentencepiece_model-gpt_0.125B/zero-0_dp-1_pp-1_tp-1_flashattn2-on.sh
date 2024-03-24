@@ -239,13 +239,13 @@ data_path="${megatron_deepspeed_dir}/dataset/arxiv_text_document"
 if [ ! -f "${data_path}.bin" ] || [ ! -f "${data_path}.idx" ]; then
     echo "Either ${data_path}.bin or ${data_path}.idx doesn't exist yet, so download arxiv.jsonl and preprocess the data."
     wget https://data.together.xyz/redpajama-data-1T/v1.0.0/arxiv/arxiv_024de5df-1b7f-447c-8c3a-51407d8d6732.jsonl \
-        --directory-prefix ${megatron_deepspeed_dir}/dataset/
-    mv ${megatron_deepspeed_dir}/dataset/arxiv_024de5df-1b7f-447c-8c3a-51407d8d6732.jsonl ${megatron_deepspeed_dir}/dataset/arxiv.jsonl
-    python ${megatron_deepspeed_dir}/tools/preprocess_data.py \
+        --directory-prefix "${megatron_deepspeed_dir}"/dataset/
+    mv "${megatron_deepspeed_dir}"/dataset/arxiv_024de5df-1b7f-447c-8c3a-51407d8d6732.jsonl "${megatron_deepspeed_dir}"/dataset/arxiv.jsonl
+    python "${megatron_deepspeed_dir}"/tools/preprocess_data.py \
         --tokenizer-type SentencePieceTokenizer \
-        --tokenizer-model ${input_tokenizer_file} \
-        --input ${megatron_deepspeed_dir}/dataset/arxiv.jsonl \
-        --output-prefix ${megatron_deepspeed_dir}/dataset/arxiv \
+        --tokenizer-model "${input_tokenizer_file}" \
+        --input "${megatron_deepspeed_dir}"/dataset/arxiv.jsonl \
+        --output-prefix "${megatron_deepspeed_dir}"/dataset/arxiv \
         --dataset-impl mmap \
         --workers $(grep -c ^processor /proc/cpuinfo) \
         --append-eod

@@ -275,10 +275,10 @@ log_path="${output_model_dir}/log"
 checkpoint_path="${output_model_dir}/checkpoint/${jobname}"
 tensorboard_path="${output_model_dir}/tensorboard/${jobname}_${host}_${current_time}"
 deepspeed_config_dir="${output_model_dir}/deepspeed_config"
-mkdir -p ${log_path}
-mkdir -p ${checkpoint_path}
-mkdir -p ${tensorboard_path}
-mkdir -p ${deepspeed_config_dir}
+mkdir -p "${log_path}"
+mkdir -p "${checkpoint_path}"
+mkdir -p "${tensorboard_path}"
+mkdir -p "${deepspeed_config_dir}"
 ###############################################################################
 data_options=" \
     --tokenizer-type SentencePieceTokenizer \
