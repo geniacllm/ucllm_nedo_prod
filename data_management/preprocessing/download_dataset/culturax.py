@@ -76,4 +76,4 @@ def download_dataset(language: str,  output_base: str = "output", index_from: in
         os.remove(output_file_path)
     for i in range(index_from, index_to+1):
         filename = config["filebase"].format(language=language, index=str(i).zfill(5))
-        __execute_download(language=language, download_file=filename,
+        __execute_download(language=language, download_file=filename,  output_file_path=output_file_path, dataset_root=dataset_root)
