@@ -1,4 +1,4 @@
-name: Python ruff lint and format
+name: Python ruff lint
 
 on:
   pull_request:
