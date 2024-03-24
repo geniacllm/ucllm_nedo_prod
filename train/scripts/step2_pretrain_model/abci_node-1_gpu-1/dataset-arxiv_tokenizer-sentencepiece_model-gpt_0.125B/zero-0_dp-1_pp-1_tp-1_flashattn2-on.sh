@@ -239,13 +239,13 @@ data_path="${megatron_deepspeed_dir}/dataset/arxiv_text_document"
 if [ ! -f "${data_path}.bin" ] || [ ! -f "${data_path}.idx" ]; then
     echo "Either ${data_path}.bin or ${data_path}.idx doesn't exist yet, so download arxiv.jsonl and preprocess the data."
     wget https://data.together.xyz/redpajama-data-1T/v1.0.0/arxiv/arxiv_024de5df-1b7f-447c-8c3a-51407d8d6732.jsonl \
-        --directory-prefix ${megatron_deepspeed_dir}/dataset/
-    mv ${megatron_deepspeed_dir}/dataset/arxiv_024de5df-1b7f-447c-8c3a-51407d8d6732.jsonl ${megatron_deepspeed_dir}/dataset/arxiv.jsonl
-    python ${megatron_deepspeed_dir}/tools/preprocess_data.py \
+        --directory-prefix "${megatron_deepspeed_dir}"/dataset/
+    mv "${megatron_deepspeed_dir}"/dataset/arxiv_024de5df-1b7f-447c-8c3a-51407d8d6732.jsonl "${megatron_deepspeed_dir}"/dataset/arxiv.jsonl
+    python "${megatron_deepspeed_dir}"/tools/preprocess_data.py \
         --tokenizer-type SentencePieceTokenizer \
-        --tokenizer-model ${input_tokenizer_file} \
-        --input ${megatron_deepspeed_dir}/dataset/arxiv.jsonl \
-        --output-prefix ${megatron_deepspeed_dir}/dataset/arxiv \
+        --tokenizer-model "${input_tokenizer_file}" \
+        --input "${megatron_deepspeed_dir}"/dataset/arxiv.jsonl \
+        --output-prefix "${megatron_deepspeed_dir}"/dataset/arxiv \
         --dataset-impl mmap \
         --workers 64 \
         --append-eod
@@ -342,12 +342,12 @@ fi
 
 config_json="${deepspeed_config_dir}/ds_config_gbs${global_batch_size}_mbs${batch_size}_log${log_interval}_zero${zero_stage}.json"
 template_json="${megatron_deepspeed_dir}/examples_deepspeed/rebase/ds_config_gpt_TEMPLATE.json"
-sed "s/GBSIZE/${global_batch_size}/" ${template_json} \
+sed "s/GBSIZE/${global_batch_size}/" "${template_json}" \
     | sed "s/MBSIZE/${batch_size}/" \
     | sed "s/LOG_INTERVAL/${log_interval}/" \
     | sed "s/ZERO_STAGE/${zero_stage}/" \
     | sed "s/PRESCALE_GRAD/${prescale_grad}/" \
-      > ${config_json}
+      > "${config_json}"
 
 deepspeed_options=" \
     --deepspeed \
@@ -374,7 +374,7 @@ iteration=0
 for (( node = 0; node <= num_node-1; node++ ))
 do
     if $(ssh -q worker-"$node" "test -f \"$iteration_file\""); then
-        local_iteration=$(ssh -q worker-"$node" cat $iteration_file)
+        local_iteration=$(ssh -q worker-"$node" cat "$iteration_file")
         iteration=$(( ${local_iteration} > ${iteration} ? ${local_iteration} :  ${iteration} ))
     fi
 done
@@ -384,8 +384,8 @@ if [[ $iteration -gt 0 ]]; then
     ds_ssh "echo $iteration_2 > $iteration_file_2"
 fi
 
-deepspeed ${megatron_deepspeed_dir}/pretrain_gpt.py \
-    ${megatron_options} \
-    ${data_options} \
-    ${deepspeed_options} \
-    2>&1 | tee ${log_path}/${jobname}_${host}_${current_time}.log
+deepspeed "${megatron_deepspeed_dir}"/pretrain_gpt.py \
+    "${megatron_options}" \
+    "${data_options}" \
+    "${deepspeed_options}" \
+    2>&1 | tee "${log_path}"/${jobname}_"${host}"_"${current_time}".log

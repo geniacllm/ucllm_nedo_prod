@@ -275,10 +275,10 @@ log_path="${output_model_dir}/log"
 checkpoint_path="${output_model_dir}/checkpoint/${jobname}"
 tensorboard_path="${output_model_dir}/tensorboard/${jobname}_${host}_${current_time}"
 deepspeed_config_dir="${output_model_dir}/deepspeed_config"
-mkdir -p ${log_path}
-mkdir -p ${checkpoint_path}
-mkdir -p ${tensorboard_path}
-mkdir -p ${deepspeed_config_dir}
+mkdir -p "${log_path}"
+mkdir -p "${checkpoint_path}"
+mkdir -p "${tensorboard_path}"
+mkdir -p "${deepspeed_config_dir}"
 ###############################################################################
 data_options=" \
     --tokenizer-type SentencePieceTokenizer \
@@ -342,12 +342,12 @@ fi
 
 config_json="${deepspeed_config_dir}/ds_config_gbs${global_batch_size}_mbs${batch_size}_log${log_interval}_zero${zero_stage}.json"
 template_json="${megatron_deepspeed_dir}/examples_deepspeed/rebase/ds_config_gpt_TEMPLATE.json"
-sed "s/GBSIZE/${global_batch_size}/" ${template_json} \
+sed "s/GBSIZE/${global_batch_size}/" "${template_json}" \
     | sed "s/MBSIZE/${batch_size}/" \
     | sed "s/LOG_INTERVAL/${log_interval}/" \
     | sed "s/ZERO_STAGE/${zero_stage}/" \
     | sed "s/PRESCALE_GRAD/${prescale_grad}/" \
-      > ${config_json}
+      > "${config_json}"
 
 deepspeed_options=" \
     --deepspeed \
@@ -374,7 +374,7 @@ iteration=0
 for (( node = 0; node <= num_node-1; node++ ))
 do
     if $(ssh -q worker-"$node" "test -f \"$iteration_file\""); then
-        local_iteration=$(ssh -q worker-"$node" cat $iteration_file)
+        local_iteration=$(ssh -q worker-"$node" cat "$iteration_file")
         iteration=$(( ${local_iteration} > ${iteration} ? ${local_iteration} :  ${iteration} ))
     fi
 done
@@ -384,8 +384,8 @@ if [[ $iteration -gt 0 ]]; then
     ds_ssh "echo $iteration_2 > $iteration_file_2"
 fi
 
-deepspeed ${megatron_deepspeed_dir}/pretrain_gpt.py \
-    ${megatron_options} \
-    ${data_options} \
-    ${deepspeed_options} \
-    2>&1 | tee ${log_path}/${jobname}_${host}_${current_time}.log
+deepspeed "${megatron_deepspeed_dir}"/pretrain_gpt.py \
+    "${megatron_options}" \
+    "${data_options}" \
+    "${deepspeed_options}" \
+    2>&1 | tee "${log_path}"/${jobname}_"${host}"_"${current_time}".log
