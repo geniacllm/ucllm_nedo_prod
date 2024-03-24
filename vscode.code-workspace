@@ -6,10 +6,23 @@
 	],
 	"settings": {
 		"cSpell.words": [
+			"ABCI",
+			"allgather",
+			"cpython",
+			"CUDA",
 			"Geniac",
 			"leaderboard",
+			"nedo",
 			"Nejumi",
-			"protoc"
+			"nvcc",
+			"protoc",
+			"qrsh",
+			"sakura",
+			"torchaudio",
+			"torchvision",
+			"ucllm",
+			"unigram",
+			"venv"
 		]
 	}
 }
