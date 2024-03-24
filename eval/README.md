@@ -1,8 +1,8 @@
-## 評価ステップの手順
+# 評価ステップの手順
 
-### 環境構築
+## 環境構築
 
-```
+```shell
 git clone git@github.com:matsuolab/llm-leaderboard.git
 pip3 install -r llm-leaderboard/requirements.txt
 
@@ -15,7 +15,8 @@ export OPENAI_API_KEY=<your OPENAI_API_KEY>
 huggingface-cli login
 ```
 
-### 評価の設定(llm-leaderboard/configs/config.yaml の編集)
+## 評価の設定(llm-leaderboard/configs/config.yaml の編集)
+
 ```yaml
 # TODO: 松尾研のプロジェクト名、チーム名設定
 # run_nameの編集
@@ -59,13 +60,13 @@ mtbench:
   max_new_token: 256 # モデルの扱えるcontext lengthに応じて調整してください
 ```
 
-### 評価の実行
+## 評価の実行
 
-```
+```shell
 cd llm-leaderboard
 python scripts/run_eval.py
 ```
 
-### リーダーボードの確認
-https://wandb.ai/weblab_lecture/weblab-llm-leaderboard
+## リーダーボードの確認
 
+<https://wandb.ai/weblab_lecture/weblab-llm-leaderboard>
