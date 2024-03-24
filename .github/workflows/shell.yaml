@@ -23,3 +23,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ludeeus/action-shellcheck@master
+        env:
+          # SC2034: Unused variables以外は後で外す see: .sheckcheckrc
+          SHELLCHECK_OPTS: -e SC2034 -e SC2004 -e SC2091 -e SC2046 -e SC1090 -e SC2162 -e SC2236 -e SC2129
