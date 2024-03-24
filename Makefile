@@ -32,6 +32,19 @@ start: cmd-exists-code ## Open this repository with VSCode
 	@code vscode.code-workspace
 .PHONY: start
 
+lint-python: cmd-exists-ruff  ## Lint Python code
+	@ruff check
+.PHONY: lint-python
+
+format-python: cmd-exists-ruff  ## Format Python code
+	@ruff format
+.PHONY: format-python
+
+lint-shell: cmd-exists-shellcheck  ## Lint Shell code
+	@shellcheck $(shell find . -type f -name "*.sh")
+.PHONY: lint-shell
+
+
 # check set
 check-path:  ## Check PATH
 	@echo $${PATH//:/\\n}
@@ -43,6 +56,7 @@ check-myip: ## Check my ip address
 
 check-dockerport: cmd-exists-docker cmd-exists-jq ## Check docker port
 	@docker ps -q | xargs docker inspect | jq '.[] | {name: .Name, ports: .NetworkSettings.Ports}'
+
 
 # version checks
 check-version-python: cmd-exists-python3 guard-EXPECTED_PYTHON_VERSION  ## Check Python version
