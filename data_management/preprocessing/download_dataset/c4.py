@@ -78,7 +78,7 @@ def download_dataset(
             [f"GIT_LFS_SKIP_SMUDGE=1 git clone {dataset} {dataset_root}"], shell=True
         )
         os.chdir(dataset_root)
-        subprocess.call([f"git lfs install"], shell=True)
+        subprocess.call(["git lfs install"], shell=True)
     os.chdir(current_dir)
 
     config = __download_config(split=split, index_from=index_from, index_to=index_to)

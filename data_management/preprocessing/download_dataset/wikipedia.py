@@ -53,7 +53,7 @@ def download_dataset(date: str, output_base: str = "output", lang: str = "ja") -
                     f.write(chunk)
     else:
         logging.info(f"File {os.path.join(dump_path, filename)} already exists")
-        logging.info(f"Skipping download\n")
+        logging.info("Skipping download\n")
 
     # ダンプデータをパースする
     output_path = os.path.join(output_base, f"datasets/wikipedia/{date}/{lang}")

@@ -40,7 +40,7 @@ def download_dataset(output_base: str = "output") -> None:
             [f"GIT_LFS_SKIP_SMUDGE=1 git clone {dataset} {dataset_root}"], shell=True
         )
         os.chdir(dataset_root)
-        subprocess.call([f"git lfs install"], shell=True)
+        subprocess.call(["git lfs install"], shell=True)
     os.chdir(current_dir)
 
     output_path = os.path.join(output_base, "datasets/databricks-dolly-15k-ja")

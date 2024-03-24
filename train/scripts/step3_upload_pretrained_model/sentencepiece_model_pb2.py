@@ -20,31 +20,31 @@ _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(
     DESCRIPTOR, "sentencepiece_model_pb2", globals()
 )
-if _descriptor._USE_C_DESCRIPTORS == False:
+if _descriptor._USE_C_DESCRIPTORS == False:  # noqa: E712
     DESCRIPTOR._options = None
     DESCRIPTOR._serialized_options = b"H\003"
-    _TRAINERSPEC.fields_by_name["mining_sentence_size"]._options = None
-    _TRAINERSPEC.fields_by_name[
+    _TRAINERSPEC.fields_by_name["mining_sentence_size"]._options = None  # noqa: F821
+    _TRAINERSPEC.fields_by_name[  # noqa: F821
         "mining_sentence_size"
     ]._serialized_options = b"\030\001"
-    _TRAINERSPEC.fields_by_name["training_sentence_size"]._options = None
-    _TRAINERSPEC.fields_by_name[
+    _TRAINERSPEC.fields_by_name["training_sentence_size"]._options = None  # noqa: F821
+    _TRAINERSPEC.fields_by_name[  # noqa: F821
         "training_sentence_size"
     ]._serialized_options = b"\030\001"
-    _TRAINERSPEC._serialized_start = 45
-    _TRAINERSPEC._serialized_end = 1581
-    _TRAINERSPEC_MODELTYPE._serialized_start = 1517
-    _TRAINERSPEC_MODELTYPE._serialized_end = 1570
-    _NORMALIZERSPEC._serialized_start = 1584
-    _NORMALIZERSPEC._serialized_end = 1793
-    _SELFTESTDATA._serialized_start = 1795
-    _SELFTESTDATA._serialized_end = 1916
-    _SELFTESTDATA_SAMPLE._serialized_start = 1864
-    _SELFTESTDATA_SAMPLE._serialized_end = 1905
-    _MODELPROTO._serialized_start = 1919
-    _MODELPROTO._serialized_end = 2429
-    _MODELPROTO_SENTENCEPIECE._serialized_start = 2208
-    _MODELPROTO_SENTENCEPIECE._serialized_end = 2418
-    _MODELPROTO_SENTENCEPIECE_TYPE._serialized_start = 2323
-    _MODELPROTO_SENTENCEPIECE_TYPE._serialized_end = 2407
+    _TRAINERSPEC._serialized_start = 45  # noqa: F821
+    _TRAINERSPEC._serialized_end = 1581  # noqa: F821
+    _TRAINERSPEC_MODELTYPE._serialized_start = 1517  # noqa: F821
+    _TRAINERSPEC_MODELTYPE._serialized_end = 1570  # noqa: F821
+    _NORMALIZERSPEC._serialized_start = 1584  # noqa: F821
+    _NORMALIZERSPEC._serialized_end = 1793  # noqa: F821
+    _SELFTESTDATA._serialized_start = 1795  # noqa: F821
+    _SELFTESTDATA._serialized_end = 1916  # noqa: F821
+    _SELFTESTDATA_SAMPLE._serialized_start = 1864  # noqa: F821
+    _SELFTESTDATA_SAMPLE._serialized_end = 1905  # noqa: F821
+    _MODELPROTO._serialized_start = 1919  # noqa: F821
+    _MODELPROTO._serialized_end = 2429  # noqa: F821
+    _MODELPROTO_SENTENCEPIECE._serialized_start = 2208  # noqa: F821
+    _MODELPROTO_SENTENCEPIECE._serialized_end = 2418  # noqa: F821
+    _MODELPROTO_SENTENCEPIECE_TYPE._serialized_start = 2323  # noqa: F821
+    _MODELPROTO_SENTENCEPIECE_TYPE._serialized_end = 2407  # noqa: F821
 # @@protoc_insertion_point(module_scope)
