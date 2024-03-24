@@ -2,6 +2,8 @@
 
 setup:
 
+*please install direnv
+
 ```shell
 cp example.env .env
 
