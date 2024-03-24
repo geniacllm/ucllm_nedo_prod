@@ -3,5 +3,5 @@
 input_dir=$1
 output_dir=$2
 
-mkdir -p ${output_dir}
-cat ${input_dir}/*.jsonl > ${output_dir}/merged.jsonl
+mkdir -p "${output_dir}"
+cat "${input_dir}"/*.jsonl > "${output_dir}"/merged.jsonl
