@@ -6,9 +6,12 @@ setup:
 
 ```shell
 cp example.env .env
+make start  # open vscode
 
 # todo: .venv setup
+# make install
 
+# versions checker
 make check-versions-for-llm
 ```
 
@@ -17,9 +20,11 @@ lint and format:
 *please install ruff and shellcheck
 
 ```shell
+# use ruff
 make lint-python
 make lint-shell
 
+# use shellcheck
 make format-python
 ```
 
