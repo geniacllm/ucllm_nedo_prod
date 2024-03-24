@@ -1,11 +1,24 @@
 # geniac llm
 
-setup
+setup:
 
 ```shell
 cp example.env .env
 
+# todo: .venv setup
+
 make check-versions-for-llm
+```
+
+lint and format:
+
+*please install ruff and shellcheck
+
+```shell
+make lint-python
+make lint-shell
+
+make format-python
 ```
 
 ## LLM開発の標準コード・手順
