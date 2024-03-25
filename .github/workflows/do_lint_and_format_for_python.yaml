@@ -3,10 +3,10 @@ name: Python ruff lint
 on:
   pull_request:
     branches:
-      - dev
+      - hironow/gha-and-init-setup
   pull_request_target:
     branches:
-      - dev
+      - hironow/gha-and-init-setup
 
 concurrency:
   group: python-${{ github.head_ref || github.ref }}
