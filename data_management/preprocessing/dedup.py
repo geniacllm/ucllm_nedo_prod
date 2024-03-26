@@ -8,8 +8,7 @@ from datetime import datetime
 def exec_hojichar_deduplication(lines: list[str], output_base: str, stats: list[dict]):
     remained_lines = []
     cleaner = Compose(
-        [
-            document_filters.JSONLoader(ignore=True),
+        [document_filters.JSONLoader(ignore=True),
             deduplication.GenerateDedupLSH(),
             deduplication.LSHDeduplicator(online_dedup=True, store_blacklist=True),
             document_filters.JSONDumper(),
