@@ -47,7 +47,7 @@ def __execute_download(
 def download_dataset(
     language: str, output_base: str = "output", index_from: int = 0, index_to: int = 0
 ) -> None:
-    """Download the specified C4 dataset from Hugging Face."""
+    """Download the specified CulturaX dataset from Hugging Face."""
     if index_from < 0:
         raise ValueError("index_from must be greater than or equal to 0")
     if index_to < index_from:
