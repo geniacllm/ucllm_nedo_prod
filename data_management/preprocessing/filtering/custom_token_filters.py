@@ -2,7 +2,7 @@ from hojichar import TokenFilter, Token
 from fugashi import Tagger
 import re
 
-tagger = Tagger('-Owakati')
+tagger = Tagger("-Owakati")
 
 
 class RemoveDate(TokenFilter):
@@ -13,10 +13,14 @@ class RemoveDate(TokenFilter):
 
     def __init__(self, date_pattern: re.Pattern = None, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.date_pattern = self._date_pattern() if date_pattern is None else date_pattern
+        self.date_pattern = (
+            self._date_pattern() if date_pattern is None else date_pattern
+        )
 
     def _date_pattern(self) -> str:
-        return re.compile(r'^(\d{2,4}([-年/])\d{1,2}([-月/])\d{1,2}日?)|(\d{2,4}([-年/])\d{1,2}([-月])?)|(\d{1,2}([-月/])\d{1,2}日?)$')
+        return re.compile(
+            r"^(\d{2,4}([-年/])\d{1,2}([-月/])\d{1,2}日?)|(\d{2,4}([-年/])\d{1,2}([-月])?)|(\d{1,2}([-月/])\d{1,2}日?)$"
+        )
 
     def apply(self, token: Token) -> Token:
         text = token.text

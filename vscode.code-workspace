@@ -1,0 +1,94 @@
+{
+  "folders": [
+    {
+      "name": "model",
+      "path": "./train"
+    },
+    {
+      "name": "data",
+      "path": "./data_management"
+    },
+    {
+      "name": "eval",
+      "path": "./eval"
+    },
+    {
+      "name": "infra",
+      "path": "./infra"
+    },
+    {
+      "name": "root",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.mypy_cache": true,
+      "**/.ruff_cache": true
+    },
+    "cSpell.words": [
+		"ABCI",
+		"allgather",
+		"arxiv",
+		"basemodel",
+		"botchan",
+		"charliermarsh",
+		"cpython",
+		"CUDA",
+		"culturax",
+		"datasketch",
+		"Dedup",
+		"direnv",
+		"Dolma",
+		"EVOFORMER",
+		"filebase",
+		"finetune",
+		"finetuned",
+		"flashattn",
+		"Geniac",
+		"GROUPNAME",
+		"hojichar",
+		"hotsuyuki",
+		"hpcx",
+		"huggingface",
+		"jaster",
+		"JOBNAME",
+		"leaderboard",
+		"LIBEXT",
+		"matsuolab",
+		"metainfo",
+		"minhash",
+		"miniconda",
+		"mtbench",
+		"mypy",
+		"nedo",
+		"Nejumi",
+		"netrc",
+		"nvcc",
+		"oasst",
+		"OPENAI",
+		"openassistant",
+		"posttraining",
+		"pretrain",
+		"Pretraining",
+		"protoc",
+		"qrsh",
+		"readlines",
+		"redpajama",
+		"sakura",
+		"sentencepiece",
+		"srun",
+		"timonwong",
+		"torchaudio",
+		"torchvision",
+		"ucllm",
+		"unigram",
+		"venv",
+		"wandb",
+		"weblab"
+	]
+  },
+  "extensions": {
+    "recommendations": ["charliermarsh.ruff", "timonwong.shellcheck"]
+  }
+}

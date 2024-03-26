@@ -5,7 +5,7 @@ from os import PathLike
 from typing import Any, Union
 import re
 
-tagger = Tagger('-Owakati')
+tagger = Tagger("-Owakati")
 
 
 class DiscardAdultContentJa(document_filters.NgWordsFilterJa):
@@ -16,7 +16,8 @@ class DiscardAdultContentJa(document_filters.NgWordsFilterJa):
 
     def __init__(
         self,
-        dict_path: Union[str, PathLike] = document_filters.BASE_PATH / "dict/adult_keywords_ja.txt",
+        dict_path: Union[str, PathLike] = document_filters.BASE_PATH
+        / "dict/adult_keywords_ja.txt",
         threshold: float = 0.01,
         *args: Any,
         **kwargs: Any,
@@ -30,7 +31,10 @@ class DiscardAdultContentJa(document_filters.NgWordsFilterJa):
         adult_content_count = len(matches)
         total_words_count = len(tagger.parse(doc.text).split())
 
-        if total_words_count > 0 and adult_content_count / total_words_count > self.threshold:
+        if (
+            total_words_count > 0
+            and adult_content_count / total_words_count > self.threshold
+        ):
             doc.is_rejected = True
 
         return doc

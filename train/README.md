@@ -1,6 +1,6 @@
 # Train
 
-計算環境によって環境構築等の手順が少し異なるので、各計算環境向けのREADM.mdをご参照ください。
+計算環境によって環境構築等の手順が少し異なるので、各計算環境向けのREADME.mdをご参照ください。
 
 * ABCI
   * [README-train_abci_single_node_single_gpu.md](./README-train_abci_single_node_single_gpu.md)

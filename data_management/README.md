@@ -2,7 +2,7 @@
 
 <img width="694" alt="スクリーンショット 2024-02-27 14 21 58" src="https://github.com/matsuolab/ucllm_nedo_dev/assets/1203529/f42cac59-20f9-4b0e-990b-e5dcd24fbcd3">
 
-_引用: A Survey of Large Language Models, https://arxiv.org/pdf/2303.18223.pdf より抜粋_
+_引用: A Survey of Large Language Models, <https://arxiv.org/pdf/2303.18223.pdf> より抜粋_
 
 ## 環境構築
 
@@ -43,25 +43,25 @@ $ ./bin/setup
 部分的なダウンロードを行う場合
 
 ```sh
-$ python -m preprocessing.download_dataset --dataset=c4 --split=train --output_base=tmp/output --index_from=0 --index_to=5
+python -m preprocessing.download_dataset --dataset=c4 --split=train --output_base=tmp/output --index_from=0 --index_to=5
 ```
 
 CulturaX(日本語) のダウンロードをする場合
 
 ```sh
-$ python -m preprocessing.download_dataset --language=ja --dataset=culturaX --output_base=tmp/output --index_from=0 --index_to=5
+python -m preprocessing.download_dataset --language=ja --dataset=culturaX --output_base=tmp/output --index_from=0 --index_to=5
 ```
 
 全日本語 mC4 をダウンロードする場合
 
 ```sh
-$ ./bin/download_mc4_ja tmp/output
+./bin/download_mc4_ja tmp/output
 ```
 
 ### [wikipedia dump](https://dumps.wikimedia.org/jawiki/)
 
 ```sh
-$ python -m preprocessing.download_dataset --dataset=wikipedia --split=20240301
+python -m preprocessing.download_dataset --dataset=wikipedia --split=20240301
 ```
 
 split に指定可能な値は[wikipedia dump の index](https://dumps.wikimedia.org/jawiki/)に指定されているディレクトリ
@@ -71,13 +71,13 @@ split に指定可能な値は[wikipedia dump の index](https://dumps.wikimedia
 全件ダウンロード(※注 巨大なデータセットです。ダウンロード先、実行時間にご注意ください)
 
 ```sh
-$ python -m preprocessing.download_dataset --dataset=redpajama
+python -m preprocessing.download_dataset --dataset=redpajama
 ```
 
 データセット別のダウンロード
 
 ```sh
-$ python -m preprocessing.download_dataset --dataset=redpajama --split=c4
+python -m preprocessing.download_dataset --dataset=redpajama --split=c4
 ```
 
 split に指定可能なデータセットは以下
@@ -97,7 +97,7 @@ split に指定可能なデータセットは以下
 Redpajama の後継バージョンです
 
 ```sh
-$ python -m preprocessing.download_dataset --dataset=redpajama_v2 --snapshot=2023-06 --partition=head_middle --language=en
+python -m preprocessing.download_dataset --dataset=redpajama_v2 --snapshot=2023-06 --partition=head_middle --language=en
 ```
 
 その他ダウンロード可能なスナップショット、パーティション、言語等の詳しい使い方は Hugging Face を参照してください
@@ -114,7 +114,7 @@ $ python -m preprocessing.download_dataset --dataset=redpajama_v2 --snapshot=202
 デフォルトのフィルタリングの実行
 
 ```sh
-$ python -m preprocessing.filtering --input_dir=input --output_dir=output
+python -m preprocessing.filtering --input_dir=input --output_dir=output
 ```
 
 自前のフィルターを追加する方法は開発 TIPS を参考にしてください。
@@ -126,7 +126,7 @@ $ python -m preprocessing.filtering --input_dir=input --output_dir=output
 興味のある方は References を参照してください。
 
 ```sh
-$ python -m preprocessing.dedup --input_dir=input --output_dir=tmp/output
+python -m preprocessing.dedup --input_dir=input --output_dir=tmp/output
 ```
 
 ### PII Masking
@@ -148,12 +148,12 @@ cleaner = Compose([
 学習用のデータセットを作成する時にご利用ください
 
 ```sh
-$ bin/concat {input_dir} {output_dir}
+bin/concat {input_dir} {output_dir}
 ```
 
 以下のようなディレクトリ構造でファイルが置かれているとします
 
-```
+```txt
 dataset/wikipedia/0.jsonl
 dataset/wikipedia/1.jsonl
 dataset/wikipedia/2.jsonl
@@ -162,12 +162,12 @@ dataset/wikipedia/2.jsonl
 このコマンドを利用して 1 つのファイルにまとめることができます
 
 ```sh
-$ bin/concat dataset/wikipedia dataset/wikipedia/merged
+bin/concat dataset/wikipedia dataset/wikipedia/merged
 ```
 
 出力されるファイルは以下のとおりです
 
-```
+```txt
 dataset/wikipedia/merged/merged.jsonl
 ```
 
@@ -178,15 +178,15 @@ dataset/wikipedia/merged/merged.jsonl
 利用方法
 
 ```sh
-$ python -m posttraining.download_dataset --output_base=output
+python -m posttraining.download_dataset --output_base=output
 ```
 
-https://huggingface.co/datasets/taka-yayoi/databricks-dolly-15k-ja にアップロードされている JSONL 形式のデータセットです
+<https://huggingface.co/datasets/taka-yayoi/databricks-dolly-15k-ja> にアップロードされている JSONL 形式のデータセットです
 Dolly のトレーニングで利用可能な形式になっているので学習に応じて必要な形に整形して利用してください
 
 #### 参考
 
-https://www.databricks.com/jp/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm
+<https://www.databricks.com/jp/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm>
 
 ## 開発 TIPS
 
@@ -257,7 +257,7 @@ dedup 部分を[datasketch](https://github.com/ekzhu/datasketch)で実装する�
 
 | Title                                                                                                 | URL                                                                           | 概要                                                          |
 | :---------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- | :------------------------------------------------------------ |
-| The RefinedWeb Dataset for Falcon LLM: Outperforming Curated Corpora with Web Data, and Web Data Only | https://arxiv.org/pdf/2306.01116.pdf                                          | Falcon LLM の事前学習データ収集加工のパイプラインについて解説 |
-| AI2 Dolma: 3 Trillion Token Open Corpus for Language Model Pretraining                                | https://blog.allenai.org/dolma-3-trillion-tokens-open-llm-corpus-9a0ff4b8da64 | Dolma のデータ収集加工のパイプラインについて解説              |
-| Deduplicating Training Data Makes Language Models Better                                              | https://arxiv.org/pdf/2107.06499.pdf                                          | Dedup によって LLM の品質が上がることを報告                   |
-| Data Management For Large Language Models: A Survey                                                   | https://arxiv.org/pdf/2312.01700.pdf                                          | LLM のデータ管理に関するサーベイ論文                          |
+| The RefinedWeb Dataset for Falcon LLM: Outperforming Curated Corpora with Web Data, and Web Data Only | <https://arxiv.org/pdf/2306.01116.pdf>                                          | Falcon LLM の事前学習データ収集加工のパイプラインについて解説 |
+| AI2 Dolma: 3 Trillion Token Open Corpus for Language Model Pretraining                                | <https://blog.allenai.org/dolma-3-trillion-tokens-open-llm-corpus-9a0ff4b8da64> | Dolma のデータ収集加工のパイプラインについて解説              |
+| Deduplicating Training Data Makes Language Models Better                                              | <https://arxiv.org/pdf/2107.06499.pdf>                                          | Dedup によって LLM の品質が上がることを報告                   |
+| Data Management For Large Language Models: A Survey                                                   | <https://arxiv.org/pdf/2312.01700.pdf>                                          | LLM のデータ管理に関するサーベイ論文                          |

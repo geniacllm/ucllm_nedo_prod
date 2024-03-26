@@ -1,4 +1,3 @@
-
 import logging
 import os
 import subprocess
@@ -28,4 +27,11 @@ def download_dataset(split: str = "", output_base: str = "tmp/output") -> None:
     # Download the dataset
     output_path = os.path.join(output_base, "datasets/togethercomputer/redpajama")
     os.makedirs(output_path, exist_ok=True)
-    subprocess.run([os.path.join(SCRIPT_PATH,  "download_redpajama.sh"), output_path, os.path.join(dataset_root, "urls.txt"), split])
+    subprocess.run(
+        [
+            os.path.join(SCRIPT_PATH, "download_redpajama.sh"),
+            output_path,
+            os.path.join(dataset_root, "urls.txt"),
+            split,
+        ]
+    )
