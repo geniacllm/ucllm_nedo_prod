@@ -121,7 +121,7 @@ $ source ~/ucllm_nedo_dev/train/.venv/bin/activate
 (.venv) $ cd ~/ucllm_nedo_dev/train/apex/ && git fetch origin && git checkout refs/tags/23.08
 
 # nvccが対応しているCUDAのバージョンとPyTorchが依存しているCUDAのバージョンが一致していることを確認。
-(.venv) $ which nvcc && echo "====" && nvcc --version && echo "====" && python -c "import torch; print(torch.__version__)"
+(.venv) $ which nvcc && echo "====" && nvcc --version && echo "====" && python -c "import torch; print(torch.version.cuda)"
 
 # pipのバージョンが23.1以上であることを確認。
 (.venv) $ which pip && echo "====" && pip --version

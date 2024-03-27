@@ -3,7 +3,7 @@
 ## 前提
 
 * 計算環境: g2, 2 node, 8 GPU (Nvidia L4 24GB)
-  * 例: `$ srun --partition=g2 --nodes=2 --gpus-per-node=8 --time=05:00:00 -c 48 --pty bash -i`
+  * 例: `$ srun --partition=g2 --nodes=2 --gpus-per-node=8 --time=05:00:00 -c 12 --pty bash -i`
 
 ## Step 0. 環境構築
 
@@ -142,7 +142,7 @@ $ conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cud
 (.venv) $ cd ~/ucllm_nedo_dev/train/apex/ && git fetch origin && git checkout refs/tags/23.08
 
 # nvccが対応しているCUDAのバージョンとPyTorchが依存しているCUDAのバージョンが一致していることを確認。
-(.venv) $ which nvcc && echo "====" && nvcc --version && echo "====" && python -c "import torch; print(torch.__version__)"
+(.venv) $ which nvcc && echo "====" && nvcc --version && echo "====" && python -c "import torch; print(torch.version.cuda)"
 
 # pipのバージョンが23.1以上であることを確認。
 (.venv) $ which pip && echo "====" && pip --version

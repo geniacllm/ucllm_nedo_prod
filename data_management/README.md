@@ -2,11 +2,11 @@
 
 ![Fig. 7: An illustration of a typical data preprocessing pipeline for pre-training large language models.](../docs/assets/preprocessing_pipeline.png)
 
-_引用: A Survey of Large Language Models, <https://arxiv.org/pdf/2303.18223.pdf> より抜粋_
+_引用: A Survey of Large Language Models, <https://arxiv.org/pdf/2303.18223.pdf> Fig. 7: An illustration of a typical data preprocessing pipeline for pre-training large language models._
 
 ## 環境構築
 
-### conda による仮想環境の構築
+### condaによる仮想環境の構築
 
 ```sh
 $ cd ~/
