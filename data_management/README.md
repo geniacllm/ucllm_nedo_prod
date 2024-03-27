@@ -6,7 +6,7 @@ _引用: A Survey of Large Language Models, <https://arxiv.org/pdf/2303.18223.pd
 
 ## 環境構築
 
-### condaによる仮想環境の構築
+### conda による仮想環境の構築
 
 ```sh
 $ cd ~/
