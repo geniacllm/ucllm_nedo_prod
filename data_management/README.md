@@ -2,7 +2,7 @@
 
 ![Fig. 7: An illustration of a typical data preprocessing pipeline for pre-training large language models.](../docs/assets/preprocessing_pipeline.png)
 
-_引用: A Survey of Large Language Models, <https://arxiv.org/pdf/2303.18223.pdf> Fig. 7: An illustration of a typical data preprocessing pipeline for pre-training large language models._
+_引用: A Survey of Large Language Models, <https://arxiv.org/pdf/2303.18223.pdf> より抜粋_
 
 ## 環境構築
 
