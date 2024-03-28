@@ -1,6 +1,6 @@
 # Preprocessing
 
-<img width="694" alt="スクリーンショット 2024-02-27 14 21 58" src="https://github.com/matsuolab/ucllm_nedo_dev/assets/1203529/f42cac59-20f9-4b0e-990b-e5dcd24fbcd3">
+![Fig. 7: An illustration of a typical data preprocessing pipeline for pre-training large language models.](../docs/assets/preprocessing_pipeline.png)
 
 _引用: A Survey of Large Language Models, <https://arxiv.org/pdf/2303.18223.pdf> より抜粋_
 
