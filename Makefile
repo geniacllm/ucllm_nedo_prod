@@ -95,8 +95,8 @@ check-version-torch: cmd-exists-python guard-EXPECTED_TORCH_VERSION  ## Check Py
 .PHONY: check-version-torch
 
 check-versions-for-llm:  ## Check versions for LLM
-	@$(MAKE) check-version-python
-	@$(MAKE) check-version-nvcc
-	@$(MAKE) check-version-conda
-	@$(MAKE) check-version-torch
+	make check-version-python
+	make check-version-nvcc
+	make check-version-conda
+	make check-version-torch
 .PHONY: check-versions-for-llm
