@@ -49,7 +49,7 @@ python -m preprocessing.download_dataset --dataset=c4 --split=train --output_bas
 CulturaX(日本語) のダウンロードをする場合
 
 ```sh
-python -m preprocessing.download_dataset --language=ja --dataset=culturaX --output_base=tmp/output --index_from=0 --index_to=5
+python -m preprocessing.download_dataset --language=ja --dataset=culturax --output_base=tmp/output --index_from=0 --index_to=5
 ```
 
 全日本語 mC4 をダウンロードする場合
