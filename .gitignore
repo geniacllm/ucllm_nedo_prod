@@ -8,3 +8,6 @@ private/
 
 *-debug.log
 *.log
+
+wandb
+wandb-debug.log
