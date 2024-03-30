@@ -8,3 +8,10 @@ private/
 
 *-debug.log
 *.log
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
