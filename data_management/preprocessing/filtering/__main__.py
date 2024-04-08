@@ -1,20 +1,20 @@
 import argparse
-from datetime import datetime
 import json
-from hojichar import document_filters, tokenization, Compose, Document
 import os
+from datetime import datetime
 
-from preprocessing.filtering import (
-    custom_token_filters,
-    custom_tokenization,
-    custom_document_filters,
-)
+from hojichar import Compose, Document, document_filters, tokenization
+from preprocessing.filtering import (custom_document_filters,
+                                     custom_token_filters, custom_tokenization)
 
 
-def process_json_lines(lines: list[str], output_base: str, stats: list[dict]):
+def process_json_lines(lines: list[str], output_base: str, stats: list[dict], lang: str):
     remained_lines = []
-    cleaner = Compose(
-        [
+
+    if lang == 'ja':
+        print("Japanese filtering...")
+
+        filters = [
             document_filters.JSONLoader(),
             document_filters.DocumentNormalizer(),
             document_filters.DiscardBBSComments(),
@@ -30,7 +30,32 @@ def process_json_lines(lines: list[str], output_base: str, stats: list[dict]):
             document_filters.MaskPersonalInformation(),
             document_filters.JSONDumper(dump_reason=True),
         ]
-    )
+    elif lang == 'en':
+        print("English filtering...")
+
+        filters = [
+            document_filters.JSONLoader(),
+            document_filters.DocumentNormalizer(),
+            custom_document_filters.DiscardAdultContentEn(),
+            custom_tokenization.NewLineSentenceTokenizer(),
+            custom_token_filters.RemoveOneword(),
+            custom_tokenization.MergeTokens(delimiter="\n"),
+            custom_token_filters.RemoveDate(),
+            document_filters.MaskPersonalInformation(),
+            document_filters.JSONDumper(dump_reason=True),
+
+            # TODO: 
+            # 以下は日本語のみのフィルターなので、英語に対応する必要がある。
+            # 差別表現のフィルターを追加する。
+            # 
+            # document_filters.DiscardDiscriminationContentEn(),
+            # document_filters.DiscardBBSComments(),
+            # document_filters.DiscardAds(),
+        ]
+    else:
+        raise ValueError(f"Unsupported language: {lang}")
+
+    cleaner = Compose(filters)
 
     with open(os.path.join(output_base, "rejected.filtering.jsonl"), "w") as rejected:
         with open(os.path.join(output_base, "result.filtering.jsonl"), "w") as writer:
@@ -55,7 +80,7 @@ def __readlines(input_file: str):
         return fp.readlines()
 
 
-def filtering(input_dir: str, output_base: str):
+def filtering(input_dir: str, output_base: str, lang: str = 'ja'):
     os.makedirs(output_base, exist_ok=True)
 
     file_lines = {
@@ -66,11 +91,12 @@ def filtering(input_dir: str, output_base: str):
 
     stats = []
     for input_file, json_lines in file_lines.items():
-        input_file_prefix = os.path.splitext(os.path.basename(input_file))[0]
-        output_base_for_input: str = os.path.join(output_base, input_file_prefix)
+        range_part = os.path.splitext(input_file)[0].split("_")[-1]
+        output_dir_name = f"{lang}_part_{range_part}"
+        output_base_for_input: str = os.path.join(output_base, output_dir_name)
         os.makedirs(output_base_for_input, exist_ok=True)
 
-        lines = process_json_lines(json_lines, output_base_for_input, stats)
+        lines = process_json_lines(json_lines, output_base_for_input, stats, lang)
         file_lines[input_file] = lines
 
     with open(
@@ -103,12 +129,20 @@ def main():
         required=False,
         default="./tmp/output",
     )
+    parser.add_argument(
+        "--lang",
+        type=str,
+        help="The language of the documents to process. ja or en",
+        required=False,
+        default="ja",
+        choices=["ja", "en"],
+    )
     args = parser.parse_args()
 
     start = datetime.now()
     output_base = os.path.join(args.output_dir, start.strftime("%Y%m%d%H%M%S"))
 
-    filtering(input_dir=args.input_dir, output_base=output_base)
+    filtering(input_dir=args.input_dir, output_base=output_base, lang=args.lang)
 
 
 if __name__ == "__main__":
