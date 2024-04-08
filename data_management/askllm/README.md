@@ -6,5 +6,5 @@
 - 人手によるスコアデータセットの作成
   - タスク
     - https://www.notion.so/matsuolab-geniac/2447de2b123e410cb8f9ab1bb4bde4d2?pvs=4
-  - [`random_sampling.py`](random_sampling.py)
+  - [`random_sampling_culturax.py`](random_sampling_culturax.py)
     - CulturaX データセットからランダムに n 件サンプリングして CSV ファイルに出力するスクリプト
