@@ -197,9 +197,9 @@ zero_stage=0
 ## Total number of GPUs.
 num_gpus_pernode=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
 echo "num_gpus_pernode = ${num_gpus_pernode}"
-num_node="${NHOSTS}"
+num_node=1
 echo "num_gpus_pernode = ${num_gpus_pernode}"
-num_gpus=$((${num_gpus_pernode}*${num_node}))
+num_gpus=4
 echo "num_gpus = ${num_gpus}"
 
 ## Data parallel size.
