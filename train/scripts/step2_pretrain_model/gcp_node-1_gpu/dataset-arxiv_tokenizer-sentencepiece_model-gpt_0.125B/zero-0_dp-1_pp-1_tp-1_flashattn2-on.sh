@@ -197,10 +197,10 @@ zero_stage=0
 ## Total number of GPUs.
 num_gpus_pernode=$(nvidia-smi --query-gpu=name --format=csv,noheader | wc -l)
 num_node="${NHOSTS}"
-num_gpus=$((${num_gpus_pernode} * ${num_node}))
+num_gpus=$((${num_gpus_pernode}*${num_node}))
 
 ## Data parallel size.
-dp_size=$(( ${num_gpus} / ${pp_size} / ${mp_size} ))
+dp_size=$((${num_gpus}/${pp_size}/${mp_size}))
 
 ## Micro batch size per GPU
 ## Make sure that batch_size <= global_batch_size*pp_size*mp_size/num_gpus
