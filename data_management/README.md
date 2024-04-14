@@ -30,7 +30,7 @@ $ conda create --name .venv_data python=3.11.7 -y
 $ conda activate .venv_data
 
 # データ取得、加工の作業ディレクトリへ移動
-$ cd ~/ucllm_nedo_dev/data_management
+$ cd ~/ucllm_nedo_prod/data_management
 
 # pythonのライブラリ群をインストール
 $ ./bin/setup

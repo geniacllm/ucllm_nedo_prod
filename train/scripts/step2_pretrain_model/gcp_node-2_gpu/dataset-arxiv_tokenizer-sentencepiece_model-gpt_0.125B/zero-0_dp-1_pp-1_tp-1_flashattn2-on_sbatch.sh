@@ -14,9 +14,9 @@ set -e
 echo ""
 
 # Stores the directory paths as variables.
-ucllm_nedo_dev_train_dir="${HOME}/ucllm_nedo_dev/train"
-megatron_deepspeed_dir="${ucllm_nedo_dev_train_dir}/Megatron-DeepSpeed"
-echo "ucllm_nedo_dev_train_dir = ${ucllm_nedo_dev_train_dir}"
+ucllm_nedo_prod_train_dir="${HOME}/ucllm_nedo_prod/train"
+megatron_deepspeed_dir="${ucllm_nedo_prod_train_dir}/Megatron-DeepSpeed"
+echo "ucllm_nedo_prod_train_dir = ${ucllm_nedo_prod_train_dir}"
 echo "megatron_deepspeed_dir = ${megatron_deepspeed_dir}"
 echo ""
 

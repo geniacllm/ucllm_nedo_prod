@@ -3,7 +3,7 @@ import os
 import sys
 
 sys.path.append(
-    os.path.join(os.environ["HOME"], "ucllm_nedo_dev/train/scripts/common/")
+    os.path.join(os.environ["HOME"], "ucllm_nedo_prod/train/scripts/common/")
 )
 
 
