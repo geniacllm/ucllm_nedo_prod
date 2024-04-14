@@ -289,46 +289,46 @@ data_options=" \
 ## If CL is used, make sure to set "--split" the same as what you used during
 ## offline data analysis&indexing.
 megatron_options=" \
-    --override-opt_param-scheduler \
-    --adam-beta1 0.9 \
-    --adam-beta2 0.95 \
-    --tensor-model-parallel-size ${mp_size} \
-    --init-method-std ${init_std} \
-    --lr-decay-tokens ${lr_decay_tokens} \
-    --lr-warmup-tokens ${lr_warmup_tokens} \
-    --micro-batch-size ${batch_size} \
-    --exit-duration-in-mins ${exit_duration} \
-    --global-batch-size ${global_batch_size} \
-    --num-layers ${num_layers} \
-    --hidden-size ${hidden_size} \
-    --num-attention-heads ${num_attn_heads} \
-    --seq-length ${seq_len} \
-    --max-position-embeddings ${seq_len} \
-    --train-tokens ${train_tokens} \
-    --train-samples ${train_samples} \
-    --lr ${lr} \
-    --min-lr ${min_lr} \
-    --lr-decay-style ${lr_decay_style} \
-    --split 949,50,1 \
-    --log-interval ${log_interval} \
-    --eval-interval ${eval_interval} \
-    --eval-iters ${eval_iters} \
-    --save-interval ${save_interval} \
-    --weight-decay 0.1 \
-    --clip-grad 1.0 \
-    --hysteresis 2 \
-    --num-workers ${num_workers} \
-    --fp16 \
-    --seed ${seed} \
-    --load ${checkpoint_path} \
-    --save ${checkpoint_path} \
-    --no-async-tensor-model-parallel-allreduce \
-    --use-flash-attn-v2 \
-    --tensorboard-queue-size 1 \
-    --log-timers-to-tensorboard \
-    --log-batch-size-to-tensorboard \
-    --log-validation-ppl-to-tensorboard \
-    --tensorboard-dir ${tensorboard_path}"
+--override-opt_param-scheduler \
+--adam-beta1 0.9 \
+--adam-beta2 0.95 \
+--tensor-model-parallel-size ${mp_size} \
+--init-method-std ${init_std} \
+--lr-decay-tokens ${lr_decay_tokens} \
+--lr-warmup-tokens ${lr_warmup_tokens} \
+--micro-batch-size ${batch_size} \
+--exit-duration-in-mins ${exit_duration} \
+--global-batch-size ${global_batch_size} \
+--num-layers ${num_layers} \
+--hidden-size ${hidden_size} \
+--num-attention-heads ${num_attn_heads} \
+--seq-length ${seq_len} \
+--max-position-embeddings ${seq_len} \
+--train-tokens ${train_tokens} \
+--train-samples ${train_samples} \
+--lr ${lr} \
+--min-lr ${min_lr} \
+--lr-decay-style ${lr_decay_style} \
+--split 949,50,1 \
+--log-interval ${log_interval} \
+--eval-interval ${eval_interval} \
+--eval-iters ${eval_iters} \
+--save-interval ${save_interval} \
+--weight-decay 0.1 \
+--clip-grad 1.0 \
+--hysteresis 2 \
+--num-workers ${num_workers} \
+--fp16 \
+--seed ${seed} \
+--load ${checkpoint_path} \
+--save ${checkpoint_path} \
+--no-async-tensor-model-parallel-allreduce \
+--use-flash-attn-v2 \
+--tensorboard-queue-size 1 \
+--log-timers-to-tensorboard \
+--log-batch-size-to-tensorboard \
+--log-validation-ppl-to-tensorboard \
+--tensorboard-dir ${tensorboard_path}"
 
 if [ "${activation_checkpoint}" = "true" ]; then
 megatron_options="${megatron_options} \
@@ -350,10 +350,10 @@ sed "s/GBSIZE/${global_batch_size}/" "${template_json}" \
       > "${config_json}"
 
 deepspeed_options=" \
-    --deepspeed \
-    --deepspeed_config ${config_json} \
-    --zero-stage ${zero_stage} \
-    --pipeline-model-parallel-size ${pp_size}"
+--deepspeed \
+--deepspeed_config ${config_json} \
+--zero-stage ${zero_stage} \
+--pipeline-model-parallel-size ${pp_size}"
 
 if [[ "${no_pp}" = "true" ]]; then
 deepspeed_options="${deepspeed_options} \
