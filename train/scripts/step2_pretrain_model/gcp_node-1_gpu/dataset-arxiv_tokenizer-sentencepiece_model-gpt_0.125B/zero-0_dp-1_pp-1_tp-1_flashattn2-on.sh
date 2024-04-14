@@ -388,7 +388,7 @@ if [[ $iteration -gt 0 ]]; then
 fi
 
 deepspeed "${megatron_deepspeed_dir}"/pretrain_gpt.py \
-    "${megatron_options}" \
-    "${data_options}" \
-    "${deepspeed_options}" \
+    ${megatron_options} \
+    ${data_options} \
+    ${deepspeed_options} \
     2>&1 | tee "${log_path}"/${jobname}_"${host}"_"${current_time}".log
