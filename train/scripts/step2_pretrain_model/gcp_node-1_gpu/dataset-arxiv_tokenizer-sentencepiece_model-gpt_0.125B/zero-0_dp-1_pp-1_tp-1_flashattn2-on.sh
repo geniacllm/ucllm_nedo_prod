@@ -150,7 +150,7 @@ train_tokens=$((${train_tokens_in_billion} * 1000 * 1000 * 1000))
 ## above, and data efficiency techniques may change num tokens in some samples,
 ## so we just set this config large enough to make sure we have enough
 ## processed data and don't terminate by train_samples.
-train_samples=$(( 300 * 1000 * 1000 * 1000 * 2 / ${seq_len} ))
+train_samples=$((300*1000*1000*1000*2/${seq_len} ))
 
 ## Another wall-clock time termination condition in minutes. Set it large
 ## enough to avoid undesired early termination.
@@ -216,7 +216,7 @@ eval_interval=100
 # checkpoint will be saved every 5% of training. For longer training you would
 # want larger num_save to save more frequently, and vice versa.
 num_save=100
-estimated_train_iter=$((${train_tokens} / ${seq_len} / ${global_batch_size}))
+estimated_train_iter=$((${train_tokens}/${seq_len}/${global_batch_size}))
 # save_interval=$((${estimated_train_iter} / ${num_save}))
 
 ## Activation checkpointing saves GPU memory, but reduces training speed
