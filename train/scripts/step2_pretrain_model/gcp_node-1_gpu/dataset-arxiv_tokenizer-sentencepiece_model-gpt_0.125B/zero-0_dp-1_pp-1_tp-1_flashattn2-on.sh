@@ -200,6 +200,8 @@ echo "num_gpus_pernode = ${num_gpus_pernode}"
 num_node=1
 echo "num_gpus_pernode = ${num_gpus_pernode}"
 num_gpus=4
+# num_gpus=$(($num_gpus_pernode * $num_node))
+
 echo "num_gpus = ${num_gpus}"
 
 ## Data parallel size.
@@ -233,6 +235,7 @@ log_optimizer_state="true"
 ### Output and data configs
 current_time=$(date "+%Y.%m.%d_%H.%M.%S")
 host="${HOSTNAME}"
+echo "host = ${host}"
 seed=1234
 num_workers=0
 
