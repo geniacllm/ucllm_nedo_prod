@@ -1,4 +1,5 @@
 from hojichar import document_filters, Document
+from hojichar.core.filter_interface import Filter
 from fugashi import Tagger
 
 from os import PathLike
@@ -38,3 +39,30 @@ class DiscardAdultContentJa(document_filters.NgWordsFilterJa):
             doc.is_rejected = True
 
         return doc
+
+
+class MaskPersonNamesJa(Filter):
+    """
+    日本語の人名に該当するであろう単語をマスクします.
+    """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+    def apply(self, doc: Document) -> Document:
+        doc.text = self._mask_person_names(doc.text)
+        return doc
+
+    def _mask_person_names(self, text: str) -> str:
+        parsed = tagger.parseToNodeList(text)
+
+        masked_parsed_word_list = []
+        for word in parsed:
+            if word.pos.split(",")[2] != "人名":
+                masked_parsed_word_list.append(word.surface)
+            else:
+                masked_parsed_word_list.append(
+                    "[MASKED]"
+                )  # TODO: 置換文字列を引数で指定できるようにした方が良い？
+
+        return "".join(masked_parsed_word_list)
