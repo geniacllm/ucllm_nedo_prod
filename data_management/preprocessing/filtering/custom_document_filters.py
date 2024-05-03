@@ -1,12 +1,14 @@
 from hojichar import document_filters, Document
 from hojichar.core.filter_interface import Filter
 from fugashi import Tagger
+from faker import Faker
 
 from os import PathLike
 from typing import Any, Union
 import re
 
 tagger = Tagger("-Owakati")
+faker_jp = Faker("ja_JP")
 
 
 class DiscardAdultContentJa(document_filters.NgWordsFilterJa):
@@ -64,5 +66,24 @@ class MaskPersonNamesJa(Filter):
                 masked_parsed_word_list.append(
                     "[MASKED]"
                 )  # TODO: 置換文字列を引数で指定できるようにした方が良い？
+        masked_text = "".join(masked_parsed_word_list)
 
-        return "".join(masked_parsed_word_list)
+        # faker_jp でマスク箇所を適当な人名に置換する
+        masked_fullname_pattern = re.compile(r"\[MASKED\]\[MASKED\]")
+        masked_single_name_pattern = re.compile(r"\[MASKED\]")
+
+        # [MASKED][MASKED] は姓と名の組み合わせと見做し、それぞれ適当な名前に置換する
+        masked_text = re.sub(
+            masked_fullname_pattern,
+            faker_jp.name(),
+            masked_text,
+        )
+
+        # [MASKED] は名前の一部と見做し、適当な苗字に置換する
+        masked_text = re.sub(
+            masked_single_name_pattern,
+            faker_jp.last_name(),
+            masked_text,
+        )
+
+        return masked_text
