@@ -14,5 +14,5 @@ do
   echo ""
 done < "${SGE_JOB_HOSTLIST}" > "${ssh_config_file}"
 echo "ssh_config_file = ${ssh_config_file}"
-cat ${ssh_config_file}
+cat "${ssh_config_file}"
 echo ""

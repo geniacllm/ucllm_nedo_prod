@@ -1,12 +1,24 @@
 # Appends a path to import python scripts that are in other directories.
 import os
 import sys
-sys.path.append(os.path.join(os.environ["HOME"], "ucllm_nedo_dev/train/scripts/common/"))
+
+sys.path.append(
+    os.path.join(os.environ["HOME"], "ucllm_nedo_dev/train/scripts/common/")
+)
 
 
 import argparse
 from transformers import T5Tokenizer
-from special_token_list import UNK_TOKEN, BOS_TOKEN, EOS_TOKEN, PAD_TOKEN, CLS_TOKEN, SEP_TOKEN, EOD_TOKEN, MASK_TOKEN
+from special_token_list import (
+    UNK_TOKEN,
+    BOS_TOKEN,
+    EOS_TOKEN,
+    PAD_TOKEN,
+    CLS_TOKEN,
+    SEP_TOKEN,
+    EOD_TOKEN,
+    MASK_TOKEN,
+)
 
 
 def parse_arguments():

@@ -8,7 +8,13 @@ ROOT_PATH = pathlib.Path(preprocessing.__path__[0]).resolve().parent
 SCRIPT_PATH = os.path.join(ROOT_PATH, "scripts")
 
 
-def download_dataset(snapshot: str, language: str, partition: str, components: list[str] = [], output_base: str = "tmp/output") -> None:
+def download_dataset(
+    snapshot: str,
+    language: str,
+    partition: str,
+    components: list[str] = [],
+    output_base: str = "tmp/output",
+) -> None:
     # Set the filename and save path based on the dataset name
     dataset_root = os.path.join(output_base, "tmp/togethercomputer/redpajama-v2")
     os.makedirs(dataset_root, exist_ok=True)
@@ -32,4 +38,10 @@ def download_dataset(snapshot: str, language: str, partition: str, components: l
     output_path = os.path.join(output_base, "datasets/togethercomputer/redpajama-v2")
     os.makedirs(output_path, exist_ok=True)
 
-    subprocess.run([os.path.join(SCRIPT_PATH,  "download_redpajama_v2.sh"), listings_file, output_path])
+    subprocess.run(
+        [
+            os.path.join(SCRIPT_PATH, "download_redpajama_v2.sh"),
+            listings_file,
+            output_path,
+        ]
+    )

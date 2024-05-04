@@ -41,17 +41,17 @@ echo "input_model_dir = ${input_model_dir}"
 echo "output_tokenizer_and_model_dir = ${output_tokenizer_and_model_dir}"
 echo ""
 
-mkdir -p ${output_tokenizer_and_model_dir}
+mkdir -p "${output_tokenizer_and_model_dir}"
 
 # Converts the tokenizer from SentencePiece format to HuggingFace Transformers format.
-python ${ucllm_nedo_dev_train_dir}/scripts/step3_upload_pretrained_model/convert_tokenizer_from_sentencepiece_to_huggingface_transformers.py \
-    --input_tokenizer_file ${input_tokenizer_file} \
-    --output_tokenizer_dir ${output_tokenizer_and_model_dir}
+python "${ucllm_nedo_dev_train_dir}"/scripts/step3_upload_pretrained_model/convert_tokenizer_from_sentencepiece_to_huggingface_transformers.py \
+    --input_tokenizer_file "${input_tokenizer_file}" \
+    --output_tokenizer_dir "${output_tokenizer_and_model_dir}"
 
 # Converts the pretrained model from Megatron-DeepSpeed format to HuggingFace Transformers format.
-python ${megatron_deepspeed_dir}/tools/convert_checkpoint/deepspeed_to_transformers.py \
-    --input_folder ${input_model_dir} \
-    --output_folder ${output_tokenizer_and_model_dir}
+python "${megatron_deepspeed_dir}"/tools/convert_checkpoint/deepspeed_to_transformers.py \
+    --input_folder "${input_model_dir}" \
+    --output_folder "${output_tokenizer_and_model_dir}"
 
 echo ""
 echo "Finished to convert the tokenizer and the pretrained model to HuggingFace Transformers format."
