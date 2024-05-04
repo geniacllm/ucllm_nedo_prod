@@ -65,21 +65,21 @@ class MaskPersonNamesJa(Filter):
             else:
                 masked_parsed_word_list.append(
                     "[MASKED]"
-                )  # TODO: 置換文字列を引数で指定できるようにした方が良い？
+                )  # 人名の部分を"[MASKED]"で置換
         masked_text = "".join(masked_parsed_word_list)
 
-        # faker_jp でマスク箇所を適当な人名に置換する
-        masked_fullname_pattern = re.compile(r"\[MASKED\]\[MASKED\]")
+        # faker_jp でマスク箇所を適当な人名に置換するためのパターンを定義
+        masked_fullname_pattern = re.compile(r"(\[MASKED\]){2,}")
         masked_single_name_pattern = re.compile(r"\[MASKED\]")
 
-        # [MASKED][MASKED] は姓と名の組み合わせと見做し、それぞれ適当な名前に置換する
+        # "[MASKED][MASKED]..."のように2回以上連続する場合はフルネームと見做し、適当な名前に置換する
         masked_text = re.sub(
             masked_fullname_pattern,
             faker_jp.name(),
             masked_text,
         )
 
-        # [MASKED] は名前の一部と見做し、適当な苗字に置換する
+        # "[MASKED]"が1回のみの場合は名前の一部と見做し、適当な苗字に置換する
         masked_text = re.sub(
             masked_single_name_pattern,
             faker_jp.last_name(),
