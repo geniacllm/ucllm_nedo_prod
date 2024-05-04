@@ -1,7 +1,7 @@
 from hojichar import Filter, Document
 from fugashi import Tagger
 
-tagger = Tagger('-Owakati')
+tagger = Tagger("-Owakati")
 
 
 class WakatiTokenizer(Filter):
@@ -48,7 +48,9 @@ class MergeTokens(Filter):
     破棄されていないトークンをdelimeterで結合し, Document を更新します.
     """
 
-    def __init__(self, delimiter: str = "", before_merge_callback=None, *args, **kwargs):
+    def __init__(
+        self, delimiter: str = "", before_merge_callback=None, *args, **kwargs
+    ):
         super().__init__(*args, **kwargs)
         self.delimiter = delimiter
 
@@ -60,6 +62,8 @@ class MergeTokens(Filter):
         return self.delimiter.join(tokens)
 
     def apply(self, document: Document) -> Document:
-        remained_tokens = [token.text for token in document.tokens if not token.is_rejected]
+        remained_tokens = [
+            token.text for token in document.tokens if not token.is_rejected
+        ]
         document.text = self.merge(remained_tokens)
         return document

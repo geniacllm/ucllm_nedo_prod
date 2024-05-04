@@ -1,0 +1,24 @@
+name: Shell shellcheck lint and format
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+concurrency:
+  group: shell-${{ github.head_ref || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: "read"
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ludeeus/action-shellcheck@master
+        env:
+          # SC2034: Unused variables以外は後で外す see: .sheckcheckrc
+          SHELLCHECK_OPTS: -e SC2034 -e SC2004 -e SC2091 -e SC2046 -e SC1090 -e SC2162 -e SC2236 -e SC2129

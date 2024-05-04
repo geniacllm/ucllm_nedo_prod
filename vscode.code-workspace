@@ -1,0 +1,105 @@
+{
+  "folders": [
+    {
+      "name": "model",
+      "path": "./train"
+    },
+    {
+      "name": "data",
+      "path": "./data_management"
+    },
+    {
+      "name": "eval",
+      "path": "./eval"
+    },
+    {
+      "name": "infra",
+      "path": "./infra"
+    },
+    {
+      "name": "root",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.mypy_cache": true,
+      "**/.ruff_cache": true
+    },
+    "cSpell.words": [
+		"ABCI",
+		"allgather",
+		"arxiv",
+		"asolano",
+		"basemodel",
+		"botchan",
+		"charliermarsh",
+		"cpython",
+		"CUDA",
+		"culturax",
+		"datasketch",
+		"Dedup",
+		"direnv",
+		"Dolma",
+		"EVOFORMER",
+		"filebase",
+		"finetune",
+		"finetuned",
+		"flashattn",
+		"Geniac",
+		"ghpc",
+		"GROUPNAME",
+		"hojichar",
+		"hotsuyuki",
+		"hpcx",
+		"huggingface",
+		"jaster",
+		"JOBID",
+		"JOBNAME",
+		"leaderboard",
+		"LIBEXT",
+		"matsuolab",
+		"metainfo",
+		"minhash",
+		"miniconda",
+		"mlmini",
+		"mtbench",
+		"myenv",
+		"myjob",
+		"mypy",
+		"nedo",
+		"Nejumi",
+		"netrc",
+		"NODELIST",
+		"nvcc",
+		"oasst",
+		"OPENAI",
+		"openassistant",
+		"posttraining",
+		"pretrain",
+		"Pretraining",
+		"protoc",
+		"qrsh",
+		"readlines",
+		"redpajama",
+		"sakura",
+		"SBATCH",
+		"scancel",
+		"sentencepiece",
+		"Slurm",
+		"squeue",
+		"srun",
+		"timonwong",
+		"torchaudio",
+		"torchvision",
+		"ucllm",
+		"unigram",
+		"venv",
+		"wandb",
+		"weblab"
+	]
+  },
+  "extensions": {
+    "recommendations": ["charliermarsh.ruff", "timonwong.shellcheck"]
+  }
+}

@@ -2,14 +2,15 @@
 
 ## 前提
 
-* 計算環境: g2, 1 node, 2 GPU (Nvidia L4 24GB)
-  * 例: `$ srun --partition g2 --nodes=1 --gpus-per-node=2 --time=04:00:00 -c 48 --pty bash -i`
+* 計算環境: g2, 1 node, 1 GPU (Nvidia L4 24GB)
+  * 例: `$ srun --partition g2 --nodes=1 --gpus-per-node=1 --time=04:00:00 -c 12 --pty bash -i`
 
 ## Step 0. 環境構築
 
 このステップでの目標は、下記のようなディレクトリ構造の状態になることです。
 
 Before:
+
 ```sh
 ~/ucllm_nedo_dev/
 └── train/
@@ -20,6 +21,7 @@ Before:
 ```
 
 After:
+
 ```sh
 ~/ucllm_nedo_dev/
 └── train/
@@ -31,6 +33,18 @@ After:
     ├── .gitignore
     ├── README.md
     └── requirements.txt
+```
+
+### Step 0-0. このgitレポジトリのクローン
+
+```sh
+$ cd ~/
+
+# このレポジトリをucllm_nedo_devという名前でクローンする。
+$ git clone https://github.com/matsuolab/ucllm_nedo_prod.git ucllm_nedo_dev
+
+# ~/ucllm_nedo_dev/train以下のファイル一覧が表示されるか確認。
+$ ls ~/ucllm_nedo_dev/train/
 ```
 
 ### Step 0-1. Python仮想環境作成前における下準備
@@ -137,7 +151,7 @@ $ conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cud
 (.venv) $ cd ~/ucllm_nedo_dev/train/apex/ && git fetch origin && git checkout refs/tags/23.08
 
 # nvccが対応しているCUDAのバージョンとPyTorchが依存しているCUDAのバージョンが一致していることを確認。
-(.venv) $ which nvcc && echo "====" && nvcc --version && echo "====" && python -c "import torch; print(torch.__version__)"
+(.venv) $ which nvcc && echo "====" && nvcc --version && echo "====" && python -c "import torch; print(torch.version.cuda)"
 
 # pipのバージョンが23.1以上であることを確認。
 (.venv) $ which pip && echo "====" && pip --version
@@ -220,7 +234,7 @@ $ conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cud
 
 ### Step 2. でのトラブルシューティング
 
-##### 1. "ImportError: cannot import name 'helpers' from 'megatron.data' (Megatron-DeepSpeed/megatron/data/__init__.py)" というエラーが出た場合
+#### 1. "ImportError: cannot import name 'helpers' from 'megatron.data' (Megatron-DeepSpeed/megatron/data/__init__.py)" というエラーが出た場合
 
 原因: <br/>
 `~/ucllm_nedo_dev/train/Megatron-DeepSpeed/megatron/data/helpers.cpython-311-x86_64-linux-gnu.so` が正しく作成されていないことが原因と考えられます。
@@ -250,8 +264,9 @@ LIBEXT = $(shell /absolute/path/to/python3-config --extension-suffix)
 ```
 
 参考リンク: <br/>
-* https://zenn.dev/turing_motors/articles/04c1328bf6095a#pyenv-virtualenv-%E3%82%92%E4%BD%BF%E3%81%86%E3%81%A8%E5%BF%85%E8%A6%81%E3%81%AB%E3%81%AA%E3%82%8B%E5%87%A6%E7%90%86
-* https://zenn.dev/turing_motors/articles/da7fa101ecb9a1#makefile%E3%81%AE%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88
+
+* <https://zenn.dev/turing_motors/articles/04c1328bf6095a#pyenv-virtualenv-%E3%82%92%E4%BD%BF%E3%81%86%E3%81%A8%E5%BF%85%E8%A6%81%E3%81%AB%E3%81%AA%E3%82%8B%E5%87%A6%E7%90%86>
+* <https://zenn.dev/turing_motors/articles/da7fa101ecb9a1#makefile%E3%81%AE%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88>
 
 #### 2. 事前学習スクリプトが "> compiling and loading fused kernels ..." というところでスタックした場合
 
@@ -267,7 +282,8 @@ LIBEXT = $(shell /absolute/path/to/python3-config --extension-suffix)
 ```
 
 参考リンク: <br/>
-* https://github.com/NVIDIA/Megatron-LM/issues/82#issuecomment-1613749424
+
+* <https://github.com/NVIDIA/Megatron-LM/issues/82#issuecomment-1613749424>
 
 ## Step 3. 事前学習済みモデルのアップロード
 
