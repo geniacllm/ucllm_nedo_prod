@@ -1,11 +1,14 @@
 from hojichar import document_filters, Document
+from hojichar.core.filter_interface import Filter
 from fugashi import Tagger
+from faker import Faker
 
 from os import PathLike
 from typing import Any, Union
 import re
 
 tagger = Tagger("-Owakati")
+faker_jp = Faker("ja_JP")
 
 
 class DiscardAdultContentJa(document_filters.NgWordsFilterJa):
@@ -38,3 +41,49 @@ class DiscardAdultContentJa(document_filters.NgWordsFilterJa):
             doc.is_rejected = True
 
         return doc
+
+
+class MaskPersonNamesJa(Filter):
+    """
+    日本語の人名に該当するであろう単語をマスクします.
+    """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+    def apply(self, doc: Document) -> Document:
+        doc.text = self._mask_person_names(doc.text)
+        return doc
+
+    def _mask_person_names(self, text: str) -> str:
+        parsed = tagger.parseToNodeList(text)
+
+        masked_parsed_word_list = []
+        for word in parsed:
+            if word.pos.split(",")[2] != "人名":
+                masked_parsed_word_list.append(word.surface)
+            else:
+                masked_parsed_word_list.append(
+                    "[MASKED]"
+                )  # 人名の部分を"[MASKED]"で置換
+        masked_text = "".join(masked_parsed_word_list)
+
+        # faker_jp でマスク箇所を適当な人名に置換するためのパターンを定義
+        masked_fullname_pattern = re.compile(r"(\[MASKED\]){2,}")
+        masked_single_name_pattern = re.compile(r"\[MASKED\]")
+
+        # "[MASKED][MASKED]..."のように2回以上連続する場合はフルネームと見做し、適当な名前に置換する
+        masked_text = re.sub(
+            masked_fullname_pattern,
+            faker_jp.name(),
+            masked_text,
+        )
+
+        # "[MASKED]"が1回のみの場合は名前の一部と見做し、適当な苗字に置換する
+        masked_text = re.sub(
+            masked_single_name_pattern,
+            faker_jp.last_name(),
+            masked_text,
+        )
+
+        return masked_text

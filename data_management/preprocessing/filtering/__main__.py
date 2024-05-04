@@ -21,6 +21,7 @@ def process_json_lines(lines: list[str], output_base: str, stats: list[dict]):
             document_filters.DiscardAds(),
             document_filters.DiscardDiscriminationContentJa(),
             custom_document_filters.DiscardAdultContentJa(),
+            custom_document_filters.MaskPersonNamesJa(),
             custom_tokenization.NewLineSentenceTokenizer(),
             custom_token_filters.RemoveOneword(),
             custom_tokenization.MergeTokens(delimiter="\n"),
